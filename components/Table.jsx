@@ -1,4 +1,4 @@
-
+import Image from "next/image"
 
 export default function Table({restaurants}) {
 
@@ -32,19 +32,32 @@ export default function Table({restaurants}) {
                     restaurants.map(restaurant => (
                         <tr key={restaurant.id}>
                             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                {restaurant.name}
+                                <span>{restaurant.name}</span>
+                                <div className="flex justify-center">
+                                    <Image
+                                        alt={restaurant.img}
+                                        src={restaurant.img}
+                                        height={60}
+                                        width={120}
+                                    />
+                                </div>
                             </th>
                             <td className="px-6 py-4">
                                 {restaurant.address}
                             </td>
                             <td className="px-6 py-4">
-                                {restaurant.contact}
+                                <a href={`tel:+${restaurant.contact}`} className="font-medium text-blue-300 dark:text-blue-500 hover:underline">{restaurant.contact}</a>
                             </td>
                             <td className="px-6 py-4">
-                                {restaurant.email && restaurant.email.split(',')[2].slice(1, -1)}
+                                <a href={`mailto:${restaurant.email && restaurant.email.split(',')[2].slice(1, -1)}`} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">{restaurant.email && restaurant.email.split(',')[2].slice(1, -1)}</a>
+                                
                             </td>
-                            <td className="px-6 py-4">
-                                <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">{restaurant.webSite}</a>
+                            <td className="px-10 py-4">
+                                <a href={restaurant.webSite} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+                                </svg>
+                                </a>
                             </td>
                         </tr>
                     ))
@@ -53,38 +66,6 @@ export default function Table({restaurants}) {
                 
             </tbody>
         </table>
-        <nav className="flex items-center justify-between p-4" aria-label="Table navigation">
-            <span className="text-sm font-normal text-gray-500 dark:text-gray-400">Showing <span className="font-semibold text-gray-900 dark:text-gray-400">1-10</span> of <span className="font-semibold text-gray-900 dark:text-gray-400">1000</span></span>
-            <ul className="inline-flex items-center -space-x-px">
-                <li>
-                    <a href="#" className="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 bg-indigo-950 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white">
-                        <span className="sr-only">Previous</span>
-                        <svg className="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 bg-indigo-950 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white">1</a>
-                </li>
-                <li>
-                    <a href="#" className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 bg-indigo-950 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white">2</a>
-                </li>
-                <li>
-                    <a href="#" aria-current="page" className="z-10 px-3 py-2 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
-                </li>
-                <li>
-                    <a href="#" className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 bg-indigo-950 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white">...</a>
-                </li>
-                <li>
-                    <a href="#" className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 bg-indigo-950 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white">100</a>
-                </li>
-                <li>
-                    <a href="#" className="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 bg-indigo-950 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white">
-                        <span className="sr-only">Next</span>
-                        <svg className="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                    </a>
-                </li>
-            </ul>
-        </nav>
     </div>
 
 
